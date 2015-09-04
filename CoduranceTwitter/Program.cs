@@ -11,7 +11,7 @@ namespace CoduranceTwitter
 		public static void Main (string[] args)
 		{
 			IUserRepository users = new UserRepository ();
-			CoduranceFeedController feedController = new CoduranceFeedController (users);
+			ICoduranceFeedController feedController = new CoduranceFeedController (users);
 
 			Console.WriteLine ("         Welcome to Codurance Feed!!");
 			Console.WriteLine ("----------------------------------------------");
