@@ -45,7 +45,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="Helper\" />
     <Folder Include="Controllers\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Data\" />

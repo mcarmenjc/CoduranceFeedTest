@@ -6,6 +6,7 @@ namespace CoduranceTwitter.Entities
 	{
 		public string Text { get; set; }
 		public DateTime Timestamp { get; set; }
+		public string Owner { get; set; }
 	}
 }
 

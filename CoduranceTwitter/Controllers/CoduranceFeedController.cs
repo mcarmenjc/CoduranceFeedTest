@@ -37,7 +37,7 @@ namespace CoduranceTwitter.Controllers
 					DoPostMessage (command);
 					break;
 				case Action.Wall:
-					DoSeeWall (command);
+					actionOutput = DoSeeWall (command);
 					break;
 				case Action.Read:
 				default:
@@ -46,6 +46,48 @@ namespace CoduranceTwitter.Controllers
 			}
 
 			return actionOutput;
+		}
+
+		private IList<string> DoSeeWall(string command)
+		{
+			IList<string> messages = new List<string> ();
+			string pat = @"(.*)\s+wall";
+			Regex regex = new Regex(pat, RegexOptions.IgnoreCase);
+			Match match = regex.Match(command);
+			if (match.Success) 
+			{
+				User user = _userRepository.GetUser( match.Groups[1].ToString());
+				List<Message> messagesToShow = GetWallMessages (user);
+				messages = GetAllDisplayedWallMessages (messagesToShow);
+			}
+			return messages;
+		}
+
+		private IList<string> GetAllDisplayedWallMessages(List<Message> messagesToShow)
+		{
+			IList<string> messages = new List<string> ();
+			foreach (Message message in messagesToShow.OrderByDescending(x => x.Timestamp)) 
+			{
+				messages.Add (GetDisplayedWallMessage(message));
+			}
+			return messages;
+		}
+
+		private string GetDisplayedWallMessage(Message message)
+		{
+			return string.Format("{0} - {1} ({2})", message.Owner, message.Text, GetPassedTimeString(message.Timestamp));
+		}
+
+		private List<Message> GetWallMessages (User user)
+		{
+			List<Message> messagesToShow = new List<Message> ();
+			messagesToShow.AddRange (user.Messages);
+			foreach (string userName in user.Followings) 
+			{
+				User followingUser = _userRepository.GetUser (userName);
+				messagesToShow.AddRange (followingUser.Messages);
+			}
+			return messagesToShow;
 		}
 
 		private void DoFollow(string command)
@@ -75,13 +117,10 @@ namespace CoduranceTwitter.Controllers
 				string message = match.Groups[2].ToString();
 				user.Messages.Add (new Message (){ 
 					Text = message,
-					Timestamp = DateTime.Now
+					Timestamp = DateTime.Now,
+					Owner = user.Name
 				});
 			}
-		}
-
-		private void DoSeeWall(string command)
-		{
 		}
 
 		private IList<string> DoReadTimeLine(string userName)
@@ -94,7 +133,7 @@ namespace CoduranceTwitter.Controllers
 		private IList<string> GetTimeLineMessages(User user)
 		{
 			IList<string> userTimeLine = new List<string> ();
-			foreach (Message message in user.Messages) 
+			foreach (Message message in user.Messages.OrderByDescending(x => x.Timestamp)) 
 			{
 				userTimeLine.Add (GetMessage (message));
 			}
@@ -102,8 +141,13 @@ namespace CoduranceTwitter.Controllers
 		}
 
 		private string GetMessage(Message message)
+		{			
+			return string.Format ("{0} ({1})", message.Text, GetPassedTimeString(message.Timestamp));
+		}
+
+		private string GetPassedTimeString(DateTime messageTimeStamp)
 		{
-			TimeSpan span = DateTime.Now.Subtract ( message.Timestamp );
+			TimeSpan span = DateTime.Now.Subtract ( messageTimeStamp );
 			string passedTime = string.Empty;
 			if (span.Hours > 0) {
 				passedTime = string.Format ("{0} hours ago", span.Hours);
@@ -118,7 +162,8 @@ namespace CoduranceTwitter.Controllers
 					passedTime = string.Format ("{0} seconds ago", span.Seconds);
 				}
 			}
-			return string.Format ("{0} ({1})", message.Text, passedTime);
+
+			return passedTime;
 		}
 
 		internal Action GetAction(string command)
