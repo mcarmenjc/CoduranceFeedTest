@@ -151,64 +151,6 @@ namespace CoduranceTwitterTests
 		}
 
 		[Test()]
-		public void FollowCommandShouldCreateFirstUserIfItDoesNotExist ()
-		{
-			const string firstUser = "mcarmen";
-			const string secondUser = "rob";
-			string command = string.Format("{0} follows {1}", firstUser, secondUser);
-			IUserRepository userRepository = new UserRepository ();
-			CoduranceFeedController feedController = new CoduranceFeedController (userRepository);
-			Assert.IsFalse (userRepository.DoesUserExists(firstUser));
-			feedController.DoAction (command);
-			Assert.IsTrue (userRepository.DoesUserExists(firstUser));
-		}
-
-		[Test()]
-		public void FollowCommandShouldCreateSecondUserIfItDoesNotExist ()
-		{
-			const string firstUser = "mcarmen";
-			const string secondUser = "rob";
-			string command = string.Format("{0} follows {1}", firstUser, secondUser);
-			IUserRepository userRepository = new UserRepository ();
-			CoduranceFeedController feedController = new CoduranceFeedController (userRepository);
-			Assert.IsFalse (userRepository.DoesUserExists(secondUser));
-			feedController.DoAction (command);
-			Assert.IsTrue (userRepository.DoesUserExists(secondUser));
-		}
-
-		[Test()]
-		public void FollowingUserListShouldBeUpdatedWhenFollowCommandIsExecuted ()
-		{
-			const string firstUser = "mcarmen";
-			const string secondUser = "rob";
-			string command = string.Format("{0} follows {1}", firstUser, secondUser);
-			IUserRepository userRepository = new UserRepository ();
-			CoduranceFeedController feedController = new CoduranceFeedController (userRepository);
-			feedController.DoAction (command);
-			Assert.AreEqual (secondUser, userRepository.GetUser(firstUser).Followings.First());
-		}
-
-		[Test()]
-		public void FollowingUserListShouldNotBeUpdatedWhenUserIsAlreadyFollowed ()
-		{
-			User firstUser = new User () {
-				Name = "mcarmen",
-				Followings = new List<string>()
-			};
-			User secondUser = new User () {
-				Name = "rob"
-			};
-			firstUser.Followings.Add (secondUser.Name);
-			string command = string.Format("{0} follows {1}", firstUser.Name, secondUser.Name);
-			Mock<IUserRepository> userRepositoryMock = new Mock<IUserRepository> ();
-			userRepositoryMock.Setup (x => x.GetUser (firstUser.Name)).Returns (firstUser);
-			userRepositoryMock.Setup (x => x.GetUser (secondUser.Name)).Returns (secondUser);
-			CoduranceFeedController feedController = new CoduranceFeedController (userRepositoryMock.Object);
-			feedController.DoAction (command);
-			Assert.AreEqual (1, firstUser.Followings.Count);
-		}
-
-		[Test()]
 		public void PostCommandShouldCreateUserIfItDoesNotExist ()
 		{
 			const string user = "mcarmen";

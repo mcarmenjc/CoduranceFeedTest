@@ -41,6 +41,12 @@
     <Compile Include="Interfaces\ICoduranceFeedController.cs" />
     <Compile Include="Data\UserRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Controllers\FeedActionController.cs" />
+    <Compile Include="Controllers\WallActionController.cs" />
+    <Compile Include="Controllers\ReadActionController.cs" />
+    <Compile Include="Controllers\PostActionController.cs" />
+    <Compile Include="Controllers\FollowActionController.cs" />
+    <Compile Include="Interfaces\IFeedActionController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
