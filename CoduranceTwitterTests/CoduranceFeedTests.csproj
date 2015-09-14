@@ -43,6 +43,7 @@
     <Compile Include="Controllers\PostActionControllerTest.cs" />
     <Compile Include="Controllers\FollowActionControllerTest.cs" />
     <Compile Include="Entities\UserTest.cs" />
+    <Compile Include="Entities\MessageTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
