@@ -15,17 +15,14 @@ namespace CoduranceTwitter.Data
 			_users = new List<User> ();
 		}
 
-		public void AddUser(string name)
+		private void AddUser(string name)
 		{
-			if (!DoesUserExists (name)) 
-			{
-				User newUser = new User () {
-					Name = name,
-					Messages = new List<Message> (),
-					Followings = new List<string> ()
-				};
-				_users.Add (newUser);
-			}
+			User newUser = new User () {
+				Name = name,
+				Messages = new List<Message> (),
+				Followings = new List<string> ()
+			};
+			_users.Add (newUser);
 		}
 
 		public User GetUser(string name)

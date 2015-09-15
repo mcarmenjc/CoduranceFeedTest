@@ -3,6 +3,7 @@ using CoduranceTwitter.Interfaces;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using CoduranceTwitter.Entities;
+using System.Linq;
 
 namespace CoduranceTwitter.Controllers
 {
@@ -16,7 +17,7 @@ namespace CoduranceTwitter.Controllers
 		{
 			string userName = GetUserNameFromCommand (command);
 			List<Message> messagesToShow = GetWallMessages (userName);
-			foreach (Message message in messagesToShow) 
+			foreach (Message message in messagesToShow.OrderByDescending(x => x.Timestamp)) 
 			{
 				message.PrintInWall ();
 			}

@@ -10,7 +10,7 @@ namespace CoduranceTwitter
 		public static void Main (string[] args)
 		{
 			IUserRepository users = new UserRepository ();
-			ICoduranceFeedController feedController = new CoduranceFeedController (users);
+			IFeedActionController feedController;
 
 			Console.WriteLine ("         Welcome to Codurance Feed!!");
 			Console.WriteLine ("----------------------------------------------");
@@ -23,11 +23,7 @@ namespace CoduranceTwitter
 			{
 				Console.Write ("> ");
 				string command = Console.ReadLine ();
-				IList<string> messages = feedController.DoAction (command);
-				foreach (string message in messages) 
-				{
-					Console.WriteLine (message);
-				}
+				//feedController.DoAction (command);
 			}
 		}
 	}

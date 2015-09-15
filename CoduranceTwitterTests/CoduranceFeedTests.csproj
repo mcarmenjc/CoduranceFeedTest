@@ -43,6 +43,7 @@
     <Compile Include="Controllers\FollowActionControllerTest.cs" />
     <Compile Include="Entities\UserTest.cs" />
     <Compile Include="Entities\MessageTest.cs" />
+    <Compile Include="Repositories\UserRepositoryTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -57,5 +58,6 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Entities\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 </Project>
