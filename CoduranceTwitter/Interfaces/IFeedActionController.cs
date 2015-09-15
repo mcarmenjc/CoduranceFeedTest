@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoduranceTwitter
+namespace CoduranceTwitter.Interfaces
 {
 	public interface IFeedActionController
 	{

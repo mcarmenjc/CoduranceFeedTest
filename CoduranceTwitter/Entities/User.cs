@@ -17,6 +17,17 @@ namespace CoduranceTwitter.Entities
 				Followings.Add (user.Name);
 			}
 		}
+
+		public void Post(string message)
+		{
+			Message postedMessage = new Message ()
+			{ 
+				Text = message,
+				Timestamp = DateTime.Now,
+				Owner = Name
+			};
+			Messages.Add (postedMessage);
+		}
 	}
 }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CoduranceTwitter.Controllers;
 using CoduranceTwitter.Interfaces;
 using CoduranceTwitter.Data;
 

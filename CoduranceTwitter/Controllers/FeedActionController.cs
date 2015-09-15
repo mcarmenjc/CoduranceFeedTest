@@ -1,7 +1,7 @@
 ﻿using System;
 using CoduranceTwitter.Interfaces;
 
-namespace CoduranceTwitter
+namespace CoduranceTwitter.Controllers
 {
 	public class FeedActionController : IFeedActionController
 	{

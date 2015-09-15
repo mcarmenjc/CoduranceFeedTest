@@ -3,7 +3,7 @@ using CoduranceTwitter.Interfaces;
 using System.Text.RegularExpressions;
 using CoduranceTwitter.Entities;
 
-namespace CoduranceTwitter
+namespace CoduranceTwitter.Controllers
 {
 	public class FollowActionController : FeedActionController, IFeedActionController
 	{

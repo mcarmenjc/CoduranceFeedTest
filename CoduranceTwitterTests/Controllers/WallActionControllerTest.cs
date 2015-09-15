@@ -6,6 +6,7 @@ using CoduranceTwitter.Interfaces;
 using System.IO;
 using CoduranceTwitter.Entities;
 using System.Collections.Generic;
+using CoduranceTwitter.Controllers;
 
 namespace CoduranceTwitterTests
 {

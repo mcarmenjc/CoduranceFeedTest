@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using CoduranceTwitter.Entities;
 
-namespace CoduranceTwitter
+namespace CoduranceTwitter.Controllers
 {
 	public class WallActionController : FeedActionController, IFeedActionController
 	{

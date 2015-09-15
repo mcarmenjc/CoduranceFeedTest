@@ -37,7 +37,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoduranceFeedControllerTest.cs" />
     <Compile Include="Controllers\WallActionControllerTest.cs" />
     <Compile Include="Controllers\ReadActionControllerTest.cs" />
     <Compile Include="Controllers\PostActionControllerTest.cs" />

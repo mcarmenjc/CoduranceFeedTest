@@ -4,7 +4,7 @@ using CoduranceTwitter.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CoduranceTwitter
+namespace CoduranceTwitter.Controllers
 {
 	public class ReadActionController : FeedActionController, IFeedActionController
 	{

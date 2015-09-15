@@ -37,8 +37,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Controllers\CoduranceFeedController.cs" />
-    <Compile Include="Interfaces\ICoduranceFeedController.cs" />
     <Compile Include="Data\UserRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Controllers\FeedActionController.cs" />
