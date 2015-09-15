@@ -30,6 +30,7 @@ namespace CoduranceTwitterTests
 			Assert.AreEqual (expected, _standardOut.ToString ());
 		}
 
+		[Test()]
 		public void PrintedMessageShouldPrintSecondsPassed()
 		{
 			Message message = new Message () 
@@ -42,6 +43,7 @@ namespace CoduranceTwitterTests
 			Assert.AreEqual (expected, _standardOut.ToString ());
 		}
 
+		[Test()]
 		public void PrintedMessageShouldPrintMinutesPassed()
 		{
 			Message message = new Message () 
@@ -54,6 +56,7 @@ namespace CoduranceTwitterTests
 			Assert.AreEqual (expected, _standardOut.ToString ());
 		}
 
+		[Test()]
 		public void PrintedMessageShouldPrintHoursPassed()
 		{
 			Message message = new Message () 
@@ -63,6 +66,20 @@ namespace CoduranceTwitterTests
 			};
 			message.Print ();
 			string expected = string.Format("Message (2 hours ago){0}", Environment.NewLine);
+			Assert.AreEqual (expected, _standardOut.ToString ());
+		}
+
+		[Test()]
+		public void PrintedWallMessageShouldHaveCorrectFormat()
+		{
+			Message message = new Message () 
+			{
+				Text = "Message",
+				Timestamp = DateTime.Now.AddSeconds (-30),
+				Owner = "mcarmen"
+			};
+			message.PrintInWall ();
+			string expected = string.Format("mcarmen - Message (30 seconds ago){0}", Environment.NewLine);
 			Assert.AreEqual (expected, _standardOut.ToString ());
 		}
 	}

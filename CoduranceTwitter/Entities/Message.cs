@@ -13,6 +13,11 @@ namespace CoduranceTwitter.Entities
 			Console.WriteLine (string.Format ("{0} ({1})", Text, GetPassedTimeString (Timestamp)));
 		}
 
+		public void PrintInWall()
+		{
+			Console.WriteLine (string.Format ("{0} - {1} ({2})", Owner, Text, GetPassedTimeString (Timestamp)));
+		}
+
 		private string GetPassedTimeString(DateTime messageTimeStamp)
 		{
 			TimeSpan span = DateTime.Now.Subtract ( messageTimeStamp );
