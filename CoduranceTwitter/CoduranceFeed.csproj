@@ -45,6 +45,7 @@
     <Compile Include="Controllers\FollowActionController.cs" />
     <Compile Include="Interfaces\IFeedActionController.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Controllers\FeedActionControllerFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CoduranceTwitter.Interfaces;
 using CoduranceTwitter.Data;
+using CoduranceTwitter.Controllers;
 
 namespace CoduranceTwitter
 {
@@ -10,7 +11,7 @@ namespace CoduranceTwitter
 		public static void Main (string[] args)
 		{
 			IUserRepository users = new UserRepository ();
-			IFeedActionController feedController;
+			FeedActionControllerFactory feedActionControllerFactory = new FeedActionControllerFactory(users);
 
 			Console.WriteLine ("         Welcome to Codurance Feed!!");
 			Console.WriteLine ("----------------------------------------------");
@@ -23,7 +24,8 @@ namespace CoduranceTwitter
 			{
 				Console.Write ("> ");
 				string command = Console.ReadLine ();
-				//feedController.DoAction (command);
+				FeedActionController controller = feedActionControllerFactory.GetFeedActionController (command);
+				controller.DoAction (command);
 			}
 		}
 	}
