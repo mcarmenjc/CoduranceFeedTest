@@ -30,7 +30,7 @@ namespace CoduranceTwitterTests
 			string command = string.Format("{0} -> First message!", userName);
 			_postController.DoAction (command);
 			User user = _postController.UserRepository.GetUser (userName);
-			Assert.AreEqual (1, user.GetAllPosts().Count);
+			Assert.AreEqual (1, user.Messages.Count);
 		}
 	}
 }

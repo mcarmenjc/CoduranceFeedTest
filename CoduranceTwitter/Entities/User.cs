@@ -7,44 +7,34 @@ namespace CoduranceTwitter.Entities
 	public class User
 	{
 		public string Name { get; private set; }
-		public IList<Message> _messages;
-		public IList<string> _followings;
+		public IList<Message> Messages { get; private set;}
+		public IList<string> Followings { get; private set;}
 
 		public User(string name)
 		{
 			Name = name;
-			_messages = new List<Message> ();
-			_followings = new List<string> ();
+			Messages = new List<Message> ();
+			Followings = new List<string> ();
 		}
 
 		public void Follow(User user)
 		{
-			if (!_followings.Any (x => x == user.Name)) 
+			if (!Followings.Any (x => x == user.Name)) 
 			{
-				_followings.Add (user.Name);
+				Followings.Add (user.Name);
 			}
-		}
-
-		public IList<string> GetAllFollowers()
-		{
-			return _followings;
 		}
 
 		public void Post(string message)
 		{
 			Message postedMessage = new Message (message, Name);
-			_messages.Add (postedMessage);
+			Messages.Add (postedMessage);
 		}
 
 		public void Post(string message, DateTime timestamp)
 		{
 			Message postedMessage = new Message (message, Name, timestamp);
-			_messages.Add (postedMessage);
-		}
-
-		public IList<Message> GetAllPosts()
-		{
-			return _messages;
+			Messages.Add (postedMessage);
 		}
 	}
 }

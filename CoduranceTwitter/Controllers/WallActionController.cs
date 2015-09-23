@@ -40,11 +40,11 @@ namespace CoduranceTwitter.Controllers
 		{
 			User user = UserRepository.GetUser (userName);
 			List<Message> messagesToShow = new List<Message> ();
-			messagesToShow.AddRange (user.GetAllPosts());
-			foreach (string name in user.GetAllFollowers()) 
+			messagesToShow.AddRange (user.Messages);
+			foreach (string name in user.Followings) 
 			{
 				User followingUser = UserRepository.GetUser (name);
-				messagesToShow.AddRange (followingUser.GetAllPosts());
+				messagesToShow.AddRange (followingUser.Messages);
 			}
 			return messagesToShow;
 		}

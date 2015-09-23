@@ -37,7 +37,7 @@ namespace CoduranceTwitterTests
 			const string secondUser = "arthur";
 			string command = string.Format("{0} follows {1}", firstUser, secondUser);
 			_followController.DoAction (command);
-			Assert.IsTrue (_followController.UserRepository.GetUser(firstUser).GetAllFollowers().Any(x => x == secondUser));
+			Assert.IsTrue (_followController.UserRepository.GetUser(firstUser).Followings.Any(x => x == secondUser));
 		}
 
 		[Test()]
@@ -47,7 +47,7 @@ namespace CoduranceTwitterTests
 			const string secondUser = "rob";
 			string command = string.Format("{0} follows {1}", firstUser, secondUser);
 			_followController.DoAction (command);
-			Assert.AreEqual (1, _followController.UserRepository.GetUser(firstUser).GetAllFollowers().Count);
+			Assert.AreEqual (1, _followController.UserRepository.GetUser(firstUser).Followings.Count);
 		}
 	}
 }

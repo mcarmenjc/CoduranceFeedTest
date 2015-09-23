@@ -15,7 +15,7 @@ namespace CoduranceTwitter.Controllers
 		public override void DoAction(string command)
 		{
 			User user = UserRepository.GetUser (command);
-			foreach (Message message in user.GetAllPosts().OrderByDescending(x => x.Timestamp)) 
+			foreach (Message message in user.Messages.OrderByDescending(x => x.Timestamp)) 
 			{
 				message.Print ();
 			}

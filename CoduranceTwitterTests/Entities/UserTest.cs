@@ -14,7 +14,7 @@ namespace CoduranceTwitterTests
 			User user = new User ("mcarmen");
 			User followingUser = new User ("rob");
 			user.Follow (followingUser);
-			Assert.AreEqual (1, user.GetAllFollowers().Count);
+			Assert.AreEqual (1, user.Followings.Count);
 		}
 
 		[Test()]
@@ -22,7 +22,7 @@ namespace CoduranceTwitterTests
 		{
 			User user = new User ("mcarmen");
 			user.Post ("Hello");
-			Assert.AreEqual (1, user.GetAllPosts().Count);
+			Assert.AreEqual (1, user.Messages.Count);
 		}
 	}
 }
