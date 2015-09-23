@@ -19,17 +19,10 @@ namespace CoduranceTwitterTests
 		[SetUp()]
 		public void Init()
 		{
-			User firstUser = new User () {
-				Name = "mcarmen",
-				Followings = new List<string>()
-			};
-			User secondUser = new User () {
-				Name = "rob"
-			};
-			User thirdUser = new User () {
-				Name = "arthur"
-			};
-			firstUser.Followings.Add (secondUser.Name);
+			User firstUser = new User ("mcarmen");
+			User secondUser = new User ("rob");
+			User thirdUser = new User ("arthur");
+			firstUser.Follow (secondUser);
 			_userRepositoryMock = new Mock<IUserRepository> ();
 			_userRepositoryMock.Setup (x => x.GetUser (firstUser.Name)).Returns (firstUser);
 			_userRepositoryMock.Setup (x => x.GetUser (secondUser.Name)).Returns (secondUser);
@@ -44,7 +37,7 @@ namespace CoduranceTwitterTests
 			const string secondUser = "arthur";
 			string command = string.Format("{0} follows {1}", firstUser, secondUser);
 			_followController.DoAction (command);
-			Assert.IsTrue (_followController.UserRepository.GetUser(firstUser).Followings.Any(x => x == secondUser));
+			Assert.IsTrue (_followController.UserRepository.GetUser(firstUser).GetAllFollowers().Any(x => x == secondUser));
 		}
 
 		[Test()]
@@ -54,7 +47,7 @@ namespace CoduranceTwitterTests
 			const string secondUser = "rob";
 			string command = string.Format("{0} follows {1}", firstUser, secondUser);
 			_followController.DoAction (command);
-			Assert.AreEqual (1, _followController.UserRepository.GetUser(firstUser).Followings.Count);
+			Assert.AreEqual (1, _followController.UserRepository.GetUser(firstUser).GetAllFollowers().Count);
 		}
 	}
 }

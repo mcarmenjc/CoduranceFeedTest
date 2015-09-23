@@ -17,11 +17,7 @@ namespace CoduranceTwitterTests
 		[SetUp()]
 		public void Init()
 		{
-			User user = new User () {
-				Name = "mcarmen",
-				Followings = new List<string>(),
-				Messages = new List<Message>()
-			};
+			User user = new User ("mcarmen");
 			_userRepositoryMock = new Mock<IUserRepository> ();
 			_userRepositoryMock.Setup (x => x.GetUser (user.Name)).Returns (user);
 			_postController = new PostActionController (_userRepositoryMock.Object);
@@ -34,7 +30,7 @@ namespace CoduranceTwitterTests
 			string command = string.Format("{0} -> First message!", userName);
 			_postController.DoAction (command);
 			User user = _postController.UserRepository.GetUser (userName);
-			Assert.AreEqual (1, user.Messages.Count);
+			Assert.AreEqual (1, user.GetAllPosts().Count);
 		}
 	}
 }

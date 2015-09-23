@@ -22,32 +22,13 @@ namespace CoduranceTwitterTests
 		{
 			_standardOut = new StringWriter ();
 			Console.SetOut (_standardOut);
-			User user = new User (){ 
-				Name = "mcarmen",
-				Followings = new List<string>(),
-				Messages = new List<Message>()
-			};
-			User anotherUser = new User (){ 
-				Name = "arthur",
-				Followings = new List<string>(),
-				Messages = new List<Message>()
-			};
-			anotherUser.Messages.Add(new Message(){
-				Text = "First message",
-				Timestamp = DateTime.Now.AddSeconds(-30),
-				Owner = anotherUser.Name
-			});
-			User followingUser = new User (){ 
-				Name = "rob",
-				Followings = new List<string>(),
-				Messages = new List<Message>()
-			};
-			followingUser.Messages.Add(new Message(){
-				Text = "First message from following user",
-				Timestamp = DateTime.Now.AddSeconds(-20),
-				Owner = followingUser.Name
-			});
-			anotherUser.Followings.Add (followingUser.Name);
+			User user = new User ("mcarmen");
+			User anotherUser = new User ("arthur");
+			anotherUser.Post("First message", DateTime.Now.AddSeconds(-30));
+			User followingUser = new User ("rob");
+			followingUser.Post("First message from following user",
+				DateTime.Now.AddSeconds(-20));
+			anotherUser.Follow(followingUser);
 			_userRepositoryMock = new Mock<IUserRepository> ();
 			_userRepositoryMock.Setup (x => x.GetUser (user.Name)).Returns (user);
 			_userRepositoryMock.Setup (x => x.GetUser (anotherUser.Name)).Returns (anotherUser);

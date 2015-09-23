@@ -11,33 +11,18 @@ namespace CoduranceTwitterTests
 		[Test()]
 		public void UserNameShouldBeAddedToFollowingsUserList ()
 		{
-			User user = new User ()
-			{ 
-				Name = "mcarmen",
-				Followings = new List<string>(),
-				Messages = new List<Message>()
-			};
-			User followingUser = new User ()
-			{ 
-				Name = "rob",
-				Followings = new List<string>(),
-				Messages = new List<Message>()
-			};
+			User user = new User ("mcarmen");
+			User followingUser = new User ("rob");
 			user.Follow (followingUser);
-			Assert.AreEqual (1, user.Followings.Count);
+			Assert.AreEqual (1, user.GetAllFollowers().Count);
 		}
 
 		[Test()]
 		public void NewMessageShouldBeAddedToMessageListWhenPosting ()
 		{
-			User user = new User ()
-			{ 
-				Name = "mcarmen",
-				Followings = new List<string>(),
-				Messages = new List<Message>()
-			};
+			User user = new User ("mcarmen");
 			user.Post ("Hello");
-			Assert.AreEqual (1, user.Messages.Count);
+			Assert.AreEqual (1, user.GetAllPosts().Count);
 		}
 	}
 }

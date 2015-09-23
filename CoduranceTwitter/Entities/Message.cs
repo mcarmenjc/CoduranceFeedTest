@@ -4,9 +4,23 @@ namespace CoduranceTwitter.Entities
 {
 	public class Message
 	{
-		public string Text { get; set; }
-		public DateTime Timestamp { get; set; }
-		public string Owner { get; set; }
+		public string Text { get; private set; }
+		public DateTime Timestamp { get; private set; }
+		public string Owner { get; private set; }
+
+		public Message(string text, string owner)
+		{
+			Text = text;
+			Owner = owner;
+			Timestamp = DateTime.Now;
+		}
+
+		public Message(string text, string owner, DateTime timestamp)
+		{
+			Text = text;
+			Owner = owner;
+			Timestamp = timestamp;
+		}
 
 		public void Print()
 		{

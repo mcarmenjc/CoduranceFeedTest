@@ -20,11 +20,9 @@ namespace CoduranceTwitterTests
 		[Test()]
 		public void PrintedMessageShouldHaveCorrectFormat()
 		{
-			Message message = new Message () 
-			{
-				Text = "Message",
-				Timestamp = DateTime.Now.AddSeconds (-30)
-			};
+			Message message = new Message ("Message",
+				"mcarmen",
+				DateTime.Now.AddSeconds (-30));
 			message.Print ();
 			string expected = string.Format("Message (30 seconds ago){0}", Environment.NewLine);
 			Assert.AreEqual (expected, _standardOut.ToString ());
@@ -33,11 +31,9 @@ namespace CoduranceTwitterTests
 		[Test()]
 		public void PrintedMessageShouldPrintSecondsPassed()
 		{
-			Message message = new Message () 
-			{
-				Text = "Message",
-				Timestamp = DateTime.Now.AddSeconds (-30)
-			};
+			Message message = new Message ("Message",
+				"mcarmen",
+				DateTime.Now.AddSeconds (-30));
 			message.Print ();
 			string expected = string.Format("Message (30 seconds ago){0}", Environment.NewLine);
 			Assert.AreEqual (expected, _standardOut.ToString ());
@@ -46,11 +42,9 @@ namespace CoduranceTwitterTests
 		[Test()]
 		public void PrintedMessageShouldPrintMinutesPassed()
 		{
-			Message message = new Message () 
-			{
-				Text = "Message",
-				Timestamp = DateTime.Now.AddMinutes (-5)
-			};
+			Message message = new Message ("Message",
+				"mcarmen",
+				DateTime.Now.AddMinutes (-5));
 			message.Print ();
 			string expected = string.Format("Message (5 minutes ago){0}", Environment.NewLine);
 			Assert.AreEqual (expected, _standardOut.ToString ());
@@ -59,11 +53,9 @@ namespace CoduranceTwitterTests
 		[Test()]
 		public void PrintedMessageShouldPrintHoursPassed()
 		{
-			Message message = new Message () 
-			{
-				Text = "Message",
-				Timestamp = DateTime.Now.AddHours (-2)
-			};
+			Message message = new Message ("Message",
+				"mcarmen",
+				DateTime.Now.AddHours (-2));
 			message.Print ();
 			string expected = string.Format("Message (2 hours ago){0}", Environment.NewLine);
 			Assert.AreEqual (expected, _standardOut.ToString ());
@@ -72,12 +64,9 @@ namespace CoduranceTwitterTests
 		[Test()]
 		public void PrintedWallMessageShouldHaveCorrectFormat()
 		{
-			Message message = new Message () 
-			{
-				Text = "Message",
-				Timestamp = DateTime.Now.AddSeconds (-30),
-				Owner = "mcarmen"
-			};
+			Message message = new Message ("Message",
+				"mcarmen",
+				DateTime.Now.AddSeconds (-30));
 			message.PrintInWall ();
 			string expected = string.Format("mcarmen - Message (30 seconds ago){0}", Environment.NewLine);
 			Assert.AreEqual (expected, _standardOut.ToString ());
